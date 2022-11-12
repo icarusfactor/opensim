@@ -120,6 +120,11 @@ namespace OpenSim.Services.UserAccountService
                             "Create a new user", HandleCreateUser);
 
                     MainConsole.Instance.Commands.AddCommand("Users", false,
+                            "remove user",
+                            "remove user [<user id>]",
+                            "Remove a user", HandleRemoveUser);
+
+                    MainConsole.Instance.Commands.AddCommand("Users", false,
                             "reset user password",
                             "reset user password [<first> [<last> [<password>]]]",
                         "Reset a user password", HandleResetUserPassword);
@@ -435,6 +440,39 @@ namespace OpenSim.Services.UserAccountService
 
             CreateUser(UUID.Zero, principalId, firstName, lastName, password, email, model);
         }
+
+
+        protected void HandleRemoveUser(string module, string[] cmdparams)
+        {
+            //Check pararm count is correct.
+            if (cmdparams.Length != 3)
+            {
+                MainConsole.Instance.Output("Usage: remove user <ID>");
+                return;
+            }
+
+            string rawPrincipalId = cmdparams[2]; 
+            UUID principalId = UUID.Zero;
+            //convert string to UUID type.
+            UUID.TryParse(rawPrincipalId, out principalId);
+
+            //check database for ID. Right now forcing it not to find anything and return the value it was search.
+            //UserAccount ua = null;
+
+            //if (ua == null)
+            //{
+            //    MainConsole.Instance.Output("No user ID of {0}", rawPrincipalId );
+            //    return;
+            //}
+
+            UserAccountData[] d = m_Database.RemoveUser(principalId );     
+            MainConsole.Instance.Output("Removed ID {0}", rawPrincipalId );
+            
+            return;
+
+        }
+
+
 
         protected void HandleShowAccount(string module, string[] cmdparams)
         {

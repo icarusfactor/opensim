@@ -33,10 +33,23 @@ using OpenMetaverse;
 using OpenSim.Framework;
 using MySql.Data.MySqlClient;
 
+//Remove User
+using System.Data.Common;
+using System.IO;
+using System.Reflection;
+using log4net;
+
+
+
 namespace OpenSim.Data.MySQL
 {
     public class MySqlUserAccountData : MySQLGenericTableHandler<UserAccountData>, IUserAccountData
     {
+ 
+        //For remove user.  
+        private static readonly ILog m_log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
+       
+
         public MySqlUserAccountData(string connectionString, string realm)
                 : base(connectionString, realm, "UserAccount")
         {
@@ -101,5 +114,18 @@ namespace OpenSim.Data.MySQL
                 return DoQuery(cmd);
             }
         }
+
+       //Added To  Remove User 
+       public UserAccountData[] RemoveUser(UUID PrincipalID)
+       {
+           m_log.InfoFormat("[USER]: Removing Mysql user account with ID {0}.", PrincipalID );
+           //ExecuteSQLScript("select * from UserAccounts where PrincipalID = \""+ PrincipalID +"\" ");
+           using (MySqlCommand cmd = new MySqlCommand())
+            {
+                cmd.CommandText = String.Format("delete from UserAccounts where PrincipalID = '{0}' ", PrincipalID );
+                return DoQuery(cmd);
+            }
+       } //End RemoveUser(UUID)
+
     }
 }

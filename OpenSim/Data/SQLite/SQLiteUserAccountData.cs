@@ -36,11 +36,21 @@ using OpenSim.Framework;
 #else
     using Mono.Data.Sqlite;
 #endif
+//RemoveUser(UUID)
+using System.Data.Common;
+using System.IO;
+using System.Reflection;
+using log4net;
 
 namespace OpenSim.Data.SQLite
 {
     public class SQLiteUserAccountData : SQLiteGenericTableHandler<UserAccountData>, IUserAccountData
     {
+
+        //For remove user.  
+        private static readonly ILog m_log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
+                
+ 
         public SQLiteUserAccountData(string connectionString, string realm)
                 : base(connectionString, realm, "UserAccount")
         {
@@ -87,5 +97,18 @@ namespace OpenSim.Data.SQLite
         {
             return null;
         }
+
+        //Added To  Remove User 
+        public UserAccountData[] RemoveUser(UUID PrincipalID)
+        {
+	  m_log.InfoFormat("[USER]: Removing SQLite user account with ID {0}.", PrincipalID );
+
+          using (SqliteCommand cmd = new SqliteCommand())
+            {
+              cmd.CommandText = String.Format("delete from UserAccounts where PrincipalID = \"{0}\" ", PrincipalID );
+              return DoQuery(cmd);
+            }
+        } // End of RemoveUser(UUID)
+
     }
 }

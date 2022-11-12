@@ -35,6 +35,7 @@ using OpenMetaverse;
 using OpenSim.Framework;
 using OpenSim.Data;
 
+
 namespace OpenSim.Data.Null
 {
     public class NullUserAccountData : IUserAccountData
@@ -198,5 +199,14 @@ namespace OpenSim.Data.Null
         {
             return null;
         }
+
+        //Added To  Remove User 
+        public UserAccountData[] RemoveUser(UUID PrincipalID)
+        {
+          m_log.InfoFormat("[USER]: Removing Null user account with ID {0}.", PrincipalID );
+          return new UserAccountData[0];
+        } //End RemoveUser(UUID)
+        
+
     }
 }

@@ -330,5 +330,24 @@ namespace OpenSim.Data.PGSQL
         {
             return null;
         }
+
+        //Added To Remove User !! Dont know if this one will work,but should!!
+        public UserAccountData[] RemoveUser(UUID PrincipalID)
+         { 
+          m_log.InfoFormat("[USER]: Removing PostgreSQL user account with ID {0}.", PrincipalID );
+           string sql = "";
+            using (NpgsqlConnection conn = new NpgsqlConnection(m_ConnectionString))
+            using (NpgsqlCommand cmd = new NpgsqlCommand())
+              {   
+               cmd.CommandText = String.Format("delete from UserAccounts where PrincipalID = \"{0}\" ", PrincipalID );
+               cmd.Connection = conn;
+               cmd.CommandText = sql;
+               conn.Open();
+               return DoQuery(cmd);
+              }
+         } // End of RemoveUser(UUID)
+
+
+
     }
 }
