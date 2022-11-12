@@ -33,7 +33,7 @@ using OpenMetaverse;
 using OpenSim.Framework;
 using MySql.Data.MySqlClient;
 
-//Remove User
+//Remove User Logging
 using System.Data.Common;
 using System.IO;
 using System.Reflection;
@@ -115,7 +115,7 @@ namespace OpenSim.Data.MySQL
             }
         }
 
-       //Added To  Remove User 
+       //Added Function To Remove User 
        public UserAccountData[] RemoveUser(UUID PrincipalID)
        {
            m_log.InfoFormat("[USER]: Removing Mysql user account with ID {0}.", PrincipalID );

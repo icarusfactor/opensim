@@ -456,7 +456,10 @@ namespace OpenSim.Services.UserAccountService
             //convert string to UUID type.
             UUID.TryParse(rawPrincipalId, out principalId);
 
-            //check database for ID. Right now forcing it not to find anything and return the value it was search.
+            //Check database for ID. Right now forcing it not to find anything and return the value it was search.
+            //No checks currently active and it will just remove it if it finds the ID or fail if it does not. It will 
+            //Log to the main file when the change is done.  
+
             //UserAccount ua = null;
 
             //if (ua == null)

@@ -36,7 +36,7 @@ using OpenSim.Framework;
 #else
     using Mono.Data.Sqlite;
 #endif
-//RemoveUser(UUID)
+//RemoveUser(UUID) Logger support
 using System.Data.Common;
 using System.IO;
 using System.Reflection;
@@ -98,7 +98,7 @@ namespace OpenSim.Data.SQLite
             return null;
         }
 
-        //Added To  Remove User 
+        //Added Function To Remove User 
         public UserAccountData[] RemoveUser(UUID PrincipalID)
         {
 	  m_log.InfoFormat("[USER]: Removing SQLite user account with ID {0}.", PrincipalID );

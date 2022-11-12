@@ -34,7 +34,6 @@ namespace OpenSim.Data
 {
     public class UserAccountData
     {
-     //End of Class UserAccountData
         public UUID PrincipalID;
         public UUID ScopeID;
         public string FirstName;
@@ -53,7 +52,6 @@ namespace OpenSim.Data
         bool Delete(string field, string val);
         UserAccountData[] GetUsers(UUID scopeID, string query);
         UserAccountData[] GetUsersWhere(UUID scopeID, string where);
-        // Need to add to each mysql function.     
         UserAccountData[] RemoveUser(UUID PrincipalID); 
     }
 

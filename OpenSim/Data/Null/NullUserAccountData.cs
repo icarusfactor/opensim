@@ -200,7 +200,7 @@ namespace OpenSim.Data.Null
             return null;
         }
 
-        //Added To  Remove User 
+        //Added Function To Remove User 
         public UserAccountData[] RemoveUser(UUID PrincipalID)
         {
           m_log.InfoFormat("[USER]: Removing Null user account with ID {0}.", PrincipalID );
