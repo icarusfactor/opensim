@@ -119,7 +119,6 @@ namespace OpenSim.Data.MySQL
        public UserAccountData[] RemoveUser(UUID PrincipalID)
        {
            m_log.InfoFormat("[USER]: Removing Mysql user account with ID {0}.", PrincipalID );
-           //ExecuteSQLScript("select * from UserAccounts where PrincipalID = \""+ PrincipalID +"\" ");
            using (MySqlCommand cmd = new MySqlCommand())
             {
                 cmd.CommandText = String.Format("delete from UserAccounts where PrincipalID = '{0}' ", PrincipalID );

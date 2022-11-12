@@ -1,5 +1,51 @@
 Welcome to OpenSimulator (OpenSim for short)!
 
+# Forked EXPERIMENTAL User Remove Overview 
+
+This modification currently is for adding a Console command for removing users from the database. 
+No checks are currently employed for my modification, but will need to be. I have been made aware 
+that when Opensim is in the HG setup configuration this will cause huge database garbage build up
+and create many origin connection issues when owner UUID becomes missing. The reason I made this 
+was when setting up the Opensim Wordpress account sync. This can be eaily abused if Wordpress is
+ not setup with these precautions and just to manually remove users so they dont show back up in 
+Wordpress if the user rmeoves their account. 
+
+CONSOLE COMMAND:
+```
+remove user [<user uuid>]
+ex: remove user f9068f07-ed88-454d-be04-46e5be39b625
+```
+
+This UUID can be found in the Opensim datbaase table under UserAccounts with the label PrincipalID.
+This is a test user to insert SQL query command to use to create as a test user to delete. 
+```
+INSERT INTO UserAccounts VALUES ("f9068f07-ed88-454d-be04-46e5be39b625","00000000-0000-0000-0000-00000000000","Jim", "Bob","factor@userspace.org", "HomeURI=http%3a%2f%2fopensim.spotcheckit.org%3a9000%2f",1665681721,0,0,"",1);
+delete from UserAccounts where PrincipalID = f9068f07-ed88-454d-be04-46e5be39b625;
+```
+SQL query that is used in the remove command.
+```
+delete from UserAccounts where PrincipalID =  'f9068f07-ed88-454d-be04-46e5be39b625';
+```
+
+MY BUILD PROCESS:
+```
+make clean
+./runprebuild48.sh
+msbuild /p:Configuration=Release
+```
+
+REFRENCE OF PROBLEM TO OVERCOME:
+https://blog.zetamex.com/posts/2021/11/drowning-in-garbage/
+
+OPENSIM WIKI:(Excerpt about user removal)
+This is probably not currently possible. Or rather, nobody has done it and reported back whether 
+everything still works or whether there are lots of issues. The normal way to 'delete' a user is  
+to set their UserLevel to -1. This will prevent them from logging in.
+
+
+If anyone has ideas or patches please add them to the issues section and I will follow up. 
+
+
 # Overview
 
 OpenSim is a BSD Licensed Open Source project to develop a functioning
