@@ -71,9 +71,9 @@ TODO:
 
 [ ] Check items from users outside of home grid that have failed to connect.  
 
-[ ] Create lost+found system to move stuff not cliamed to 
+[ ] Create lost+found system to move stuff that has not been claimed or in unknown state. 
 
-[ ] If assets are not cliamed for set period slowly push them toward the garbage dump.
+[ ] If assets are not claimed for set period slowly push them toward the garbage dump.
 
 [ ] Create asset reclaimtion process. 
 
