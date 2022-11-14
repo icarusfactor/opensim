@@ -60,14 +60,21 @@ to set their UserLevel to -1. This will prevent them from logging in.
 If anyone has ideas or patches please add them to the issues section and I will follow up. 
 
 TODO:
- [ ] Get data from Database queries 
- [ ] Check if UUID exist. Dont run remove if not found.
- [ ] Check if Asset server has been initialized or not. 
- [ ] If Asset server has been initialized, give option to drop items or delete items. 
- [ ] Check items from users outside of home grid that have failed to connect.  
- [ ] Create lost+found system to move stuff not cliamed to 
- [ ] If assets are not cliamed for set period slowly push them toward the garbage dump.
- [ ] Create asset reclaimtion process. 
+[ ] Get data from Database queries 
+
+[ ] Check if UUID exist. Dont run remove if not found.
+
+[ ] Check if Asset server has been initialized or not. 
+
+[ ] If Asset server has been initialized, give option to drop items or delete items. 
+
+[ ] Check items from users outside of home grid that have failed to connect.  
+
+[ ] Create lost+found system to move stuff not cliamed to 
+
+[ ] If assets are not cliamed for set period slowly push them toward the garbage dump.
+
+[ ] Create asset reclaimtion process. 
 
 
 # Overview
