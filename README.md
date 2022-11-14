@@ -60,6 +60,7 @@ to set their UserLevel to -1. This will prevent them from logging in.
 If anyone has ideas or patches please add them to the issues section and I will follow up. 
 
 TODO:
+
 [ ] Get data from Database queries 
 
 [ ] Check if UUID exist. Dont run remove if not found.
