@@ -27,7 +27,21 @@ SQL query that is used in the remove command.
 delete from UserAccounts where PrincipalID =  'f9068f07-ed88-454d-be04-46e5be39b625';
 ```
 
-MY BUILD PROCESS:
+MONO VERSION 6.12: (Cannot be less than this version)
+
+Mono is the FOSS .NET Framework-compatible software. This is the system and binaries and libraries that OpenSim uses to run and can be compiled by using its master repo, if you choose to make modifications to the source.
+```
+rpmkeys --import "http://keyserver.ubuntu.com/pks/lookup?op=get&search=0x3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF"
+
+yum-config-manager --add-repo http://download.mono-project.com/repo/centos/
+su -c 'curl https://download.mono-project.com/repo/centos7-stable.repo | tee /etc/yum.repos.d/mono-centos7-stable.repo'
+yum clean all
+yum makecache
+yum install -y mono-complete
+```
+
+
+MY BUILD PROCESS: (This is currently as CentOS7.9)
 ```
 make clean
 ./runprebuild48.sh
@@ -44,6 +58,16 @@ to set their UserLevel to -1. This will prevent them from logging in.
 
 
 If anyone has ideas or patches please add them to the issues section and I will follow up. 
+
+TODO:
+ [ ] Get data from Database queries 
+ [ ] Check if UUID exist. Dont run remove if not found.
+ [ ] Check if Asset server has been initialized or not. 
+ [ ] If Asset server has been initialized, give option to drop items or delete items. 
+ [ ] Check items from users outside of home grid that have failed to connect.  
+ [ ] Create lost+found system to move stuff not cliamed to 
+ [ ] If assets are not cliamed for set period slowly push them toward the garbage dump.
+ [ ] Create asset reclaimtion process. 
 
 
 # Overview
